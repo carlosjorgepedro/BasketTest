@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Basket
 {
@@ -14,7 +15,17 @@ namespace Basket
 
         public void Add(Product product, int count = 1)
         {
-            _basketItems.Add(new BasketItem(product, count));
+            var item = _basketItems
+                .FirstOrDefault(x => x.Product.Name == product.Name);
+
+            if (item == null)
+            {
+                _basketItems.Add(new BasketItem(product, count));
+            }
+            else
+            {
+                item.Count += count;
+            }
         }
 
         public decimal Total => _discountCalculator.Calculate(_basketItems);
