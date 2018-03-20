@@ -3,11 +3,16 @@ using System.Linq;
 
 namespace Basket.UnitTests
 {
+    /// <summary>
+    /// Discount Calculator that does not apply discounts
+    /// for unit test purposes, provides allows cleaner
+    /// unit tests than using a Mocking interface.
+    /// </summary>
     public class NoDiscountCalculator : IDiscountCalculator
     {
-        public decimal Calculate(List<Product> products)
+        public decimal Calculate(List<BasketItem> basketItems)
         {
-            return products.Sum(x => x.Price);
+            return basketItems.Sum(x => x.Product.Price * x.Count);
         }
     }
 }

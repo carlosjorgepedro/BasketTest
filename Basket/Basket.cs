@@ -2,26 +2,21 @@
 
 namespace Basket
 {
-    public interface IDiscountCalculator
-    {
-        decimal Calculate(List<Product> products);
-    }
-
     public class Basket
     {
         private readonly IDiscountCalculator _discountCalculator;
-        private List<Product> _productList = new List<Product>();
+        private readonly List<BasketItem> _basketItems = new List<BasketItem>();
 
         public Basket(IDiscountCalculator discountCalculator)
         {
             _discountCalculator = discountCalculator;
         }
 
-        public void Add(Product product)
+        public void Add(Product product, int count = 1)
         {
-            _productList.Add(product);
+            _basketItems.Add(new BasketItem(product, count));
         }
 
-        public decimal Total { get { return _discountCalculator.Calculate(_productList); } }
+        public decimal Total => _discountCalculator.Calculate(_basketItems);
     }
 }

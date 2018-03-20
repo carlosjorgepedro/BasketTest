@@ -19,6 +19,17 @@ namespace Basket.UnitTests
         }
 
         [Test]
+        public void AddMultipleUnitsOfSameProduct()
+        {
+            var discountCalculator = new NoDiscountCalculator();
+            var basket = new Basket(discountCalculator);
+            var product = new Product("bread", 2.10m);
+
+            basket.Add(product, 3);
+            Assert.AreEqual(6.30m, basket.Total);
+        }
+
+        [Test]
         public void GettingTotalCalculateDiscount()
         {
             var discountCalculator = new NoDiscountCalculator();
