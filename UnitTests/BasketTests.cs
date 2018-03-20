@@ -10,7 +10,7 @@ namespace Basket.UnitTests
         [Test]
         public void AddItemIncreasesTotal()
         {
-            var discountCalculator = new NoDiscountCalculator();
+            var discountCalculator = new NoTotalCalculator();
             var basket = new Basket(discountCalculator);
             var product = new Product("bread", 2.10m);
 
@@ -21,7 +21,7 @@ namespace Basket.UnitTests
         [Test]
         public void AddMultipleUnitsOfSameProduct()
         {
-            var discountCalculator = new NoDiscountCalculator();
+            var discountCalculator = new NoTotalCalculator();
             var basket = new Basket(discountCalculator);
             var product = new Product("bread", 2.10m);
 
@@ -32,7 +32,7 @@ namespace Basket.UnitTests
         [Test]
         public void AddMultipleUnitsOfSameProductOneUnitAtATime()
         {
-            var discountCalculator = new NoDiscountCalculator();
+            var discountCalculator = new NoTotalCalculator();
             var basket = new Basket(discountCalculator);
             var product = new Product("bread", 2.10m);
 
@@ -46,7 +46,7 @@ namespace Basket.UnitTests
         [Test]
         public void GettingTotalCalculateDiscount()
         {
-            var discountCalculator = new NoDiscountCalculator();
+            var discountCalculator = new NoTotalCalculator();
             var basket = new Basket(discountCalculator);
             var milk = new Product("milk", 1.55m);
             var bread = new Product("bread", 21m);

@@ -5,12 +5,12 @@ namespace Basket
 {
     public class Basket
     {
-        private readonly IDiscountCalculator _discountCalculator;
+        private readonly ITotalCalculator _totalCalculator;
         private readonly List<BasketItem> _basketItems = new List<BasketItem>();
 
-        public Basket(IDiscountCalculator discountCalculator)
+        public Basket(ITotalCalculator totalCalculator)
         {
-            _discountCalculator = discountCalculator;
+            _totalCalculator = totalCalculator;
         }
 
         public void Add(Product product, int count = 1)
@@ -28,6 +28,6 @@ namespace Basket
             }
         }
 
-        public decimal Total => _discountCalculator.Calculate(_basketItems);
+        public decimal Total => _totalCalculator.Calculate(_basketItems);
     }
 }

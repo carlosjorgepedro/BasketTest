@@ -43,7 +43,9 @@
   <ItemGroup>
     <Compile Include="Basket.cs" />
     <Compile Include="BasketItem.cs" />
-    <Compile Include="IDiscountCalculator.cs" />
+    <Compile Include="IDiscount.cs" />
+    <Compile Include="TotalCalculator.cs" />
+    <Compile Include="ITotalCalculator.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

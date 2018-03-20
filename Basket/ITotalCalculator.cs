@@ -2,7 +2,7 @@
 
 namespace Basket
 {
-    public interface IDiscountCalculator
+    public interface ITotalCalculator
     {
         decimal Calculate(List<BasketItem> basketItems);
     }

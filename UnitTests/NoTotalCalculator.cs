@@ -8,7 +8,7 @@ namespace Basket.UnitTests
     /// for unit test purposes, provides allows cleaner
     /// unit tests than using a Mocking interface.
     /// </summary>
-    public class NoDiscountCalculator : IDiscountCalculator
+    public class NoTotalCalculator : ITotalCalculator
     {
         public decimal Calculate(List<BasketItem> basketItems)
         {
