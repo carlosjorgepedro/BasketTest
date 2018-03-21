@@ -7,10 +7,6 @@ namespace Basket.UnitTests
     [TestFixture]
     public class ButterBreadDiscountTests
     {
-        private readonly Product _butter = new Product("butter", 10m);
-        private readonly Product _bread = new Product("bread", 12m);
-        private readonly Product _milk = new Product("milk", 11m);
-
         [TestCase(2, 1, ExpectedResult = 6)]
         [TestCase(4, 1, ExpectedResult = 6)]
         [TestCase(4, 2, ExpectedResult = 12)]
@@ -25,9 +21,9 @@ namespace Basket.UnitTests
 
             var basketItems = new List<BasketItem>
             {
-                new BasketItem(_butter, butterCount),
-                new BasketItem(_bread, breadCount),
-                new BasketItem(_milk, 5),
+                new BasketItem(Products.Butter, butterCount),
+                new BasketItem(Products.Bread, breadCount),
+                new BasketItem(Products.Milk, 5),
             };
             var discount = new ButterBreadDiscount(priceProviderMock.Object);
             return discount.GetDiscount(basketItems);

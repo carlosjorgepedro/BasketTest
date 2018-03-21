@@ -12,10 +12,9 @@ namespace Basket.UnitTests
         {
             var discountCalculator = new NoTotalCalculator();
             var basket = new ShoppingBasket(discountCalculator);
-            var product = new Product("bread", 2.10m);
 
-            basket.Add(product);
-            Assert.AreEqual(2.10m, basket.Total);
+            basket.Add(Products.Bread);
+            Assert.AreEqual(10m, basket.Total);
         }
 
         [Test]
@@ -23,10 +22,10 @@ namespace Basket.UnitTests
         {
             var discountCalculator = new NoTotalCalculator();
             var basket = new ShoppingBasket(discountCalculator);
-            var product = new Product("bread", 2.10m);
+    
 
-            basket.Add(product, 3);
-            Assert.AreEqual(6.30m, basket.Total);
+            basket.Add(Products.Milk, 3);
+            Assert.AreEqual(30m, basket.Total);
         }
 
         [Test]
@@ -34,27 +33,12 @@ namespace Basket.UnitTests
         {
             var discountCalculator = new NoTotalCalculator();
             var basket = new ShoppingBasket(discountCalculator);
-            var product = new Product("bread", 2.10m);
 
-            basket.Add(product);
-            basket.Add(product);
-            basket.Add(product);
+            basket.Add(Products.Butter);
+            basket.Add(Products.Butter);
+            basket.Add(Products.Butter);
 
-            Assert.AreEqual(6.30m, basket.Total);
-        }
-
-        [Test]
-        public void GettingTotalCalculateDiscount()
-        {
-            var discountCalculator = new NoTotalCalculator();
-            var basket = new ShoppingBasket(discountCalculator);
-            var milk = new Product("milk", 1.55m);
-            var bread = new Product("bread", 21m);
-
-            basket.Add(milk);
-            basket.Add(bread);
-
-            Assert.AreEqual(22.55m, basket.Total);
+            Assert.AreEqual(30m, basket.Total);
         }
     }
 }

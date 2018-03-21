@@ -25,7 +25,7 @@ namespace Basket.UnitTests
 
             var basketItems = new List<BasketItem>
             {
-                new BasketItem(new Product("test_product",0.0m))
+                new BasketItem("test_product")
             };
 
             totalCalculator.Calculate(basketItems);
@@ -44,7 +44,7 @@ namespace Basket.UnitTests
 
             var basketItems = new List<BasketItem>
             {
-                new BasketItem(new Product("test_product",100.0m))
+                new BasketItem("test_product")
             };
 
             var firstDiscountMock = new Mock<IDiscount>();

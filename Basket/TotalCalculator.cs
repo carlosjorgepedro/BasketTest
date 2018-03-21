@@ -17,7 +17,7 @@ namespace Basket
         public decimal Calculate(List<BasketItem> basketItems)
         {
             var discount = _discounts.Sum(x => x.GetDiscount(basketItems));
-            var basketTotal = basketItems.Sum(item => _priceProvider.GetPrice(item.Product.Name) * item.Count);
+            var basketTotal = basketItems.Sum(item => _priceProvider.GetPrice(item.Product) * item.Count);
             return basketTotal - discount;
         }
     }

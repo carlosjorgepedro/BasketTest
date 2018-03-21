@@ -14,11 +14,11 @@ namespace Basket
         public decimal GetDiscount(List<BasketItem> basketItem)
         {
             var butterCount = basketItem
-                .Where(x => x.Product.Name == "butter")
+                .Where(x => x.Product == Products.Butter)
                 .Sum(x => x.Count);
 
             var breadCount = basketItem
-                .Where(x => x.Product.Name == "bread")
+                .Where(x => x.Product == Products.Bread)
                 .Sum(x => x.Count);
 
             var maxDiscountBreads = butterCount / 2;

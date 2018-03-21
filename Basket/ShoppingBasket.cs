@@ -13,10 +13,10 @@ namespace Basket
             _totalCalculator = totalCalculator;
         }
 
-        public void Add(Product product, int count = 1)
+        public void Add(string product, int count = 1)
         {
             var item = _basketItems
-                .FirstOrDefault(x => x.Product.Name == product.Name);
+                .FirstOrDefault(x => x.Product == product);
 
             if (item == null)
             {

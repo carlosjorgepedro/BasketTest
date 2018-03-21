@@ -17,7 +17,7 @@ namespace Basket
             var milkPrice = _priceProvider.GetPrice(Products.Milk);
 
             var milkCount = basketItem
-                .Where(x => x.Product.Name == Products.Milk)
+                .Where(x => x.Product == Products.Milk)
                 .Sum(x => x.Count);
 
             return (milkCount / 4) * milkPrice;

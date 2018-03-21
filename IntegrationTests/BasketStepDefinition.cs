@@ -28,25 +28,11 @@ namespace Basket.IntegrationTests
                 }, priceProvider));
         }
 
-        [Given("the basket has (.*) bread")]
-        [Given("(.*) bread")]
-        public void AddBread(int count)
+        [Given("the basket has (.*) (.*)")]
+        [Given("(.*) (.*)")]
+        public void AddProduct(int count, string product)
         {
-            basket.Add(new Product("bread", 1.00m), count);
-        }
-
-        [Given("the basket has (.*) milk")]
-        [Given("(.*) milk")]
-        public void AddMilk(int count)
-        {
-            basket.Add(new Product("milk", 1.15m), count);
-        }
-
-        [Given("the basket has (.*) butter")]
-        [Given("(.*) butter")]
-        public void AddButter(int count)
-        {
-            basket.Add(new Product("butter", 1.00m), count);
+            basket.Add(product, count);
         }
 
         [When("I total the basket")]
