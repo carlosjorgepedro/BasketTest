@@ -54,6 +54,7 @@
     <Compile Include="BasketTests.cs" />
     <Compile Include="ButterBreadDiscount.cs" />
     <Compile Include="ButterBreadDiscountTests.cs" />
+    <Compile Include="MilkDiscountTests.cs" />
     <Compile Include="TotalCalculatorTests.cs" />
     <Compile Include="NoTotalCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

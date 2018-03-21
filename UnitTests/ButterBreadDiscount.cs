@@ -1,11 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Basket.UnitTests
 {
+    public class MilkDiscount : IDiscount
+    {
+        public decimal GetDiscount(List<BasketItem> basketItem)
+        {
+            var milkPrice = basketItem
+                .Select(x => x.Product)
+                .First(x => x.Name == "milk")
+                .Price;
+
+            var milkCount = basketItem
+                .Where(x => x.Product.Name == "milk")
+                .Sum(x => x.Count);
+
+            return (milkCount / 4) * milkPrice;
+        }
+    }
+
     public class ButterBreadDiscount : IDiscount
     {
         public decimal GetDiscount(List<BasketItem> basketItem)
@@ -21,7 +35,7 @@ namespace Basket.UnitTests
             var maxDiscountBreads = butterCount / 2;
             var discountedBreads = breadCount > maxDiscountBreads ? maxDiscountBreads : breadCount;
 
-            return discountedBreads * basketItem.First(x => x.Product.Name == "bread").Product.Price / 2;
+            return discountedBreads * (basketItem.First(x => x.Product.Name == "bread").Product.Price) / 2;
         }
     }
 }
