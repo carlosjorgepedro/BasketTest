@@ -3,12 +3,12 @@ using System.Linq;
 
 namespace Basket
 {
-    public class Basket
+    public class ShoppingBasket
     {
         private readonly ITotalCalculator _totalCalculator;
         private readonly List<BasketItem> _basketItems = new List<BasketItem>();
 
-        public Basket(ITotalCalculator totalCalculator)
+        public ShoppingBasket(ITotalCalculator totalCalculator)
         {
             _totalCalculator = totalCalculator;
         }

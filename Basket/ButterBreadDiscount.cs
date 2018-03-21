@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Basket.UnitTests
+namespace Basket
 {
     public class MilkDiscount : IDiscount
     {
