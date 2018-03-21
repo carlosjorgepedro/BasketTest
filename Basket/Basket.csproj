@@ -42,6 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ButterBreadDiscount.cs" />
+    <Compile Include="IPriceProvider.cs" />
+    <Compile Include="PriceProvider.cs" />
+    <Compile Include="Products.cs" />
     <Compile Include="ShoppingBasket.cs" />
     <Compile Include="BasketItem.cs" />
     <Compile Include="IDiscount.cs" />

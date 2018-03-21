@@ -1,4 +1,6 @@
-﻿namespace Basket
+﻿using System;
+
+namespace Basket
 {
     public class Product
     {
