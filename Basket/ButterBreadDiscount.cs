@@ -3,25 +3,14 @@ using System.Linq;
 
 namespace Basket
 {
-    public class MilkDiscount : IDiscount
-    {
-        public decimal GetDiscount(List<BasketItem> basketItem)
-        {
-            var milkPrice = basketItem
-                .Select(x => x.Product)
-                .First(x => x.Name == "milk")
-                .Price;
-
-            var milkCount = basketItem
-                .Where(x => x.Product.Name == "milk")
-                .Sum(x => x.Count);
-
-            return (milkCount / 4) * milkPrice;
-        }
-    }
-
     public class ButterBreadDiscount : IDiscount
     {
+        private readonly IPriceProvider _priceProvider;
+
+        public ButterBreadDiscount(IPriceProvider priceProvider)
+        {
+            _priceProvider = priceProvider;
+        }
         public decimal GetDiscount(List<BasketItem> basketItem)
         {
             var butterCount = basketItem
@@ -35,7 +24,7 @@ namespace Basket
             var maxDiscountBreads = butterCount / 2;
             var discountedBreads = breadCount > maxDiscountBreads ? maxDiscountBreads : breadCount;
 
-            return discountedBreads * (basketItem.First(x => x.Product.Name == "bread").Product.Price) / 2;
+            return discountedBreads * _priceProvider.GetPrice(Products.Bread) / 2;
         }
     }
 }

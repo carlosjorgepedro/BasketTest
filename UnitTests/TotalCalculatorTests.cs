@@ -12,11 +12,16 @@ namespace Basket.UnitTests
         {
             var firstDiscountMock = new Mock<IDiscount>();
             var secondDiscountMock = new Mock<IDiscount>();
-
-            var totalCalculator = new TotalCalculator(new List<IDiscount>
-            {
-                firstDiscountMock.Object, secondDiscountMock.Object
-            });
+            var priceProviderMock = new Mock<IPriceProvider>();
+            priceProviderMock
+                .Setup(x => x.GetPrice(It.IsAny<string>()))
+                .Returns(0m);
+            var totalCalculator = new TotalCalculator(
+                new List<IDiscount>
+                {
+                    firstDiscountMock.Object, secondDiscountMock.Object
+                },
+                priceProviderMock.Object);
 
             var basketItems = new List<BasketItem>
             {
@@ -32,6 +37,11 @@ namespace Basket.UnitTests
         [Test]
         public void CalculateReturnsTotalWithSumOfDiscounts()
         {
+            var priceProviderMock = new Mock<IPriceProvider>();
+            priceProviderMock
+                .Setup(x => x.GetPrice(It.IsAny<string>()))
+                .Returns(100m);
+
             var basketItems = new List<BasketItem>
             {
                 new BasketItem(new Product("test_product",100.0m))
@@ -46,10 +56,12 @@ namespace Basket.UnitTests
                 .Setup(x => x.GetDiscount(basketItems))
                 .Returns(2m);
 
-            var totalCalculator = new TotalCalculator(new List<IDiscount>
-            {
-                firstDiscountMock.Object, secondDiscountMock.Object
-            });
+            var totalCalculator = new TotalCalculator(
+                new List<IDiscount>
+                {
+                    firstDiscountMock.Object, secondDiscountMock.Object
+                },
+                priceProviderMock.Object);
 
             var total = totalCalculator.Calculate(basketItems);
             Assert.AreEqual(88m, total);

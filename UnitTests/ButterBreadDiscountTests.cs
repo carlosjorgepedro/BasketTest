@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Moq;
 using NUnit.Framework;
 
 namespace Basket.UnitTests
@@ -18,13 +19,17 @@ namespace Basket.UnitTests
         [TestCase(0, 0, ExpectedResult = 0)]
         public decimal CalculateDiscount(int butterCount, int breadCount)
         {
+            var priceProviderMock = new Mock<IPriceProvider>();
+            priceProviderMock.Setup(x => x.GetPrice(It.IsAny<string>()))
+                .Returns(12m);
+
             var basketItems = new List<BasketItem>
             {
                 new BasketItem(_butter, butterCount),
                 new BasketItem(_bread, breadCount),
                 new BasketItem(_milk, 5),
             };
-            var discount = new ButterBreadDiscount();
+            var discount = new ButterBreadDiscount(priceProviderMock.Object);
             return discount.GetDiscount(basketItems);
         }
     }

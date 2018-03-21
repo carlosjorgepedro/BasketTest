@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="ButterBreadDiscount.cs" />
     <Compile Include="IPriceProvider.cs" />
+    <Compile Include="MilkDiscount.cs" />
     <Compile Include="PriceProvider.cs" />
     <Compile Include="Products.cs" />
     <Compile Include="ShoppingBasket.cs" />

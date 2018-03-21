@@ -16,15 +16,16 @@ namespace Basket.IntegrationTests
         // For additional details on SpecFlow step definitions see http://go.specflow.org/doc-stepdef
 
 
-        [SetUp]
+        [Before]
         public void Setup()
         {
+            var priceProvider = new PriceProvider();
             this.basket = new ShoppingBasket(new TotalCalculator(
                 new List<IDiscount>
                 {
-                    new ButterBreadDiscount(),
-                    new MilkDiscount()
-                }));
+                    new ButterBreadDiscount(priceProvider),
+                    new MilkDiscount(priceProvider)
+                }, priceProvider));
         }
 
         [Given("the basket has (.*) bread")]
